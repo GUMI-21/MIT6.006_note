@@ -1,5 +1,5 @@
 .obsidian/
-_pycache_
+*._pycache_
 *.log
 *.fls
 *.fdb_latexmk
