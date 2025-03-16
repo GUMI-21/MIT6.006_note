@@ -1,0 +1,220 @@
+%
+% 6.006 problem set 1 solutions template
+%
+\documentclass[12pt,twoside]{article}
+
+\input{macros}
+\newcommand{\theproblemsetnum}{1}
+\usepackage{color}
+\usepackage{listings}
+\lstset{ %
+language=C++,                % choose the language of the code
+basicstyle=\footnotesize,       % the size of the fonts that are used for the code
+numbers=left,                   % where to put the line-numbers
+numberstyle=\footnotesize,      % the size of the fonts that are used for the line-numbers
+stepnumber=1,                   % the step between two line-numbers. If it is 1 each line will be numbered
+numbersep=5pt,                  % how far the line-numbers are from the code
+backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+showspaces=false,               % show spaces adding particular underscores
+showstringspaces=false,         % underline spaces within strings
+showtabs=false,                 % show tabs within strings adding particular underscores
+frame=single,           % adds a frame around the code
+tabsize=2,          % sets default tabsize to 2 spaces
+captionpos=b,           % sets the caption-position to bottom
+breaklines=true,        % sets automatic line breaking
+breakatwhitespace=false,    % sets if automatic breaks should only happen at whitespace
+escapeinside={\%*}{*)}          % if you want to add a comment within your code
+}
+\title{6.006 Problem Set 1}
+
+\begin{document}
+
+\handout{Problem Set \theproblemsetnum}\\
+
+\setlength{\parindent}{0pt}
+\medskip\hrulefill\medskip
+
+{\bf Name:} Zhang Wenhao
+
+\medskip
+
+{\bf Collaborators:} 
+
+\medskip\hrulefill
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% See below for common and useful latex constructs. %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Some useful commands:
+%$f(x) = \Theta(x)$
+%$T(x, y) \leq \log(x) + 2^y + \binom{2n}{n}$
+% {\tt code\_function}
+
+
+% You can create unnumbered lists as follows:
+%\begin{itemize}
+%    \item First item in a list
+%        \begin{itemize}
+%            \item First item in a list
+%                \begin{itemize}
+%                    \item First item in a list
+%                    \item Second item in a list
+%                \end{itemize}
+%            \item Second item in a list
+%        \end{itemize}
+%    \item Second item in a list
+%\end{itemize}
+
+% You can create numbered lists as follows:
+%\begin{enumerate}
+%    \item First item in a list
+%    \item Second item in a list
+%    \item Third item in a list
+%\end{enumerate}
+
+% You can write aligned equations as follows:
+%\begin{align}
+%    \begin{split}
+%        (x+y)^3 &= (x+y)^2(x+y) \\
+%                &= (x^2+2xy+y^2)(x+y) \\
+%                &= (x^3+2x^2y+xy^2) + (x^2y+2xy^2+y^3) \\
+%                &= x^3+3x^2y+3xy^2+y^3
+%    \end{split}
+%\end{align}
+
+% You can create grids/matrices as follows:
+%\begin{align}
+%    A =
+%    \begin{bmatrix}
+%        A_{11} & A_{21} \\
+%        A_{21} & A_{22}
+%    \end{bmatrix}
+%\end{align}
+
+% You can include images and PDFs as follows:
+% \includegraphics[width=0.5\textwidth]{img.jpg}
+
+\begin{problems}
+
+\problem  % Problem 1
+
+\begin{problemparts}
+\problempart % Problem 1a
+
+we can simplify thest to 
+$
+f_1 = \Theta (n\log n), f_2 = \Theta ((\log n)^n), f_3 = \Theta(\log (n^6006)) 
+f_4 = \Theta(6006\log n), f_5 = \theta(\log \log (6006n)),
+$
+so the sequence is \textcolor{blue}{$(f_5,f_3,f_4,f_1,f_2)$}.
+\\ \textcolor{red}{correct}
+\problempart % Problem 1b
+
+we take logrithm to every functions, 
+then $f_1=n\log 2, f_2 = n\log 6006, f_3 = 6006^(n)\log 2,\\
+f_4 = 2^n \log6006, f_5 = n^2\log 6006$,
+so the sequence of functions is \textcolor{blue}{$(f_1,f_2,f_5,f_4,f_3)$}.
+\\ \textcolor{red}{correct}
+
+\problempart % Problem 1c
+
+$(\{f_2,f_5\},f_4,f_1,f_3)$
+\\ \textcolor{red}{correct}
+
+\problempart % Problem 1d
+
+take the logrithm to functions,$(\{f_5,f_2\},f_1,f_3,f_4)$
+\\ \textcolor{red}{correct}
+
+\end{problemparts}
+
+\newpage
+\problem  % Problem 2
+\begin{problemparts}
+\problempart % Problem 2a
+
+\begin{lstlisting}
+    # problem1-2 a
+    def reverse(D, i, k):
+        if k < 2:
+            return
+        for j in range(k/2):
+            x1 = D.delete_at(i-1+j)
+            x2 = D.delete_at(i+k-1-j)
+            D.insert_at(i-1+j,x2)
+            D.insert_at(i+k-1-j,x1)
+    # answer: use recursive
+    def reverse(D, i, k):
+        if k < 2:
+            return # base case
+        x2 = D.delete_at(i+k-1)
+        x1 = D.delete_at(i)
+        D.insert_at(i, x2)
+        D.insert_at(i + k - 1, x1)
+        reverse(D, i+1, k - 2)
+\end{lstlisting}
+
+\problempart % Problem 2b
+
+\begin{lstlisting}
+# problem1-2 b
+def move(D, i, k, j):
+    if k < 1:   # base case
+        return
+    x1 = D.delete_at(i)
+    if j > i:
+        j - 1
+    D.insert_at(j,x1)
+    if i > j:
+        i = i + 1
+    move(D, i, k-1, j)
+\end{lstlisting}
+
+\end{problemparts}
+
+\newpage
+\problem  % Problem 3
+skip
+\newpage
+\problem  % Problem 4
+
+\begin{problemparts}
+\problempart % Problem 4a
+
+1.insert\_first(x): Construct a new node as a storing x. If the double link D is empty,then link both
+D.head/D.tail to a.Otherwise set b equal to L.head,then
+set a's next pointer point to b and b.pre pointer point to a,then set L.head point to a. 
+\\ \\
+2.insert\_last(x): Same as insert\_first, Construct a new node as a sotring x, if the
+double link D is empty, set D.head and D.tail point to a.
+otherwise set b equal to L.tail, a.pre point to b, b.next point to a, and L.tail ponit to a.
+\\ \\
+3.delete\_first(): First, if linklist is empty, reutrn.If L.head.next equal None, set L.head equal None, return.
+Otherwise set a equal to D.head.next,
+b equal to D.head, set b.next point to None, D.head point to a.
+\\ \\
+4.delet\_last(): First, if linklist is empty, reutrn. If L.Tail.pre equal None, set L.Tail. equal None, return.
+Otherwise set a equal to D.Tail.pre,
+b equal to D.Tail, set b.pre point to None, D.tail point to a.
+\problempart % Problem 4b
+First, constuct a new empty double Link list $L_1$, set L1.head point to x1,
+L1.tail point to x2, then L1 is the double Link list we need to return. \\
+Now, remove x1 to x2 from L:\\
+if x1 is L's head and x2 is not L's tail, set L.head point to x2.next, x2.next.pre point to None. \\
+if x1 is L's head and x2 is L's tail, set L.head and L.tail all point to None \\
+if x1 is not L's head and x2 is L's tail, set x1.pre.next point to Null, and L's tail point to x1.pre. \\
+otherwise set x1.pre.next point to x2.next \& x2.next.pre point to x1.pre.
+
+\problempart % Problem 4c
+
+if L2.head = None, it means L2 is empty, reutrn.\\
+if x.next = None, x.next = L2.head, L2.head.pre = x, then set L2.head \& L2.tail all point to None. \\
+if x.next != None, set p = x.next, x.next = L2.head, L2.head.pre = x, L2.head point to None. p.pre = L.tail, L.tail.next = p, then L.tail point to None.
+
+\problempart Submit your implementation to {\small\url{alg.mit.edu}}.
+\end{problemparts}
+
+\end{problems}
+
+\end{document}

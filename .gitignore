@@ -1,2 +1,7 @@
 .obsidian/
 _pycache_
+*.log
+*.fls
+*.fdb_latexmk
+*.aux
+*.synctex.gz
