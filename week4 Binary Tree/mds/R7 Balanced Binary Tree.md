@@ -108,3 +108,46 @@ https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resourc
 
 ### Application: Sequence
 To use a Binary Tree to implement a Sequence interface, we use the traversal order of the tree to store the items in Sequence order.
+
+# Supplement: 
+Add node into a binary-search tree.
+iterate:
+```python
+function insertNode(root, newNode):
+  currentNode = root
+  while currentNode is not null:
+    if newNode.time < currentNode.time:
+      # 向左子树移动
+      if currentNode.left is null:
+        currentNode.left = newNode
+        return
+      else:
+        currentNode = currentNode.left
+    else:
+      # 向右子树移动
+      if currentNode.right is null:
+        currentNode.right = newNode
+        return
+      else:
+        currentNode = currentNode.right
+
+```
+recure:
+```python
+function insertNode(root, newNode):
+	if root is None: return
+	if newNode.item < root:
+		if root.left is None:
+			root.left = newNode
+			newNode.parent = root
+			return 
+		else:
+			insertNode(root.left, newNode)
+	elif newNode.item >= root:
+		if root.right is None:
+			root.right = newNode
+			newNode.parent = root
+			return
+		else:
+			insertNode(root.right, newNode)
+```

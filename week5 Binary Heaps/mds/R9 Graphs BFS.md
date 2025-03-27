@@ -1,3 +1,4 @@
+3.27 https://github.com/GUMI-21/MIT6.006_note
 A graph G = (V, E) is a mathematical object comprising a set of vertices V (also called nodes) and a set of edges E.
 + *directed*   (u,v)
 + *undirected*  {u,v}
