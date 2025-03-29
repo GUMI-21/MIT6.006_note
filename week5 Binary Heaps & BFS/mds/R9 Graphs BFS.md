@@ -28,12 +28,14 @@ A breadth-first search (BFS) from s discovers the level sets of s: level Li is t
 + So to compute level Li+1, include every vertex with an incoming edge from a vertex in Li, t*hat has not already been assigned a level.*, means not repeated vertices.
 ```python
 def bfs(Adj, s):   # Adj: adjacency list, s: staring vertex
+	# *Parent array returned length|V|*
 	parent = [Noen for v in Adj]  # O(V)  add a length|Adj| None array.
 	parent[s] = s   # root is string vertex
 	level = [[s]]   # level 0 is [s]
 	while 0 < len(leve[-1]):    # while level has vertices
 		level.append([])        # add a new level
 		for u in level[-2]:     # loop over last full level
+			# *every edge from v will be throughed O(|E|)*
 			for v in Adj[u]:    # loop over neighbors
 				if parent[v] is None:    # only v is not be visited.
 					parent[v] = u
@@ -41,4 +43,4 @@ def bfs(Adj, s):   # Adj: adjacency list, s: staring vertex
 	return parent, level
 ```
 + runtime
-*so the runtime is O(|E| + |V|)*, see in note of LEC9
+*so the runtime is O(|E| + |V|)*
