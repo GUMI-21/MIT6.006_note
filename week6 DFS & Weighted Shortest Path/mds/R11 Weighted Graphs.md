@@ -72,7 +72,7 @@ def try_to_relax(Adj, w, d, parent, u, v):
 		d[v] = d[u] + w[u,v] 
 		parent[v] = u
 ```
-*obey the typological order*
+*obey the topological order*
 The topological sort order ensures that edges of the path are relaxed in the order in which they appear in the path.
 Proofed by induction
 + runtime

@@ -58,7 +58,7 @@ O(V+E), linear time.
 ## Directed Acyclic Graph (DAG)
 Directed graph that contains no directed cycle.
 example: *A tree*.
-## Typological order
+## Topological order
 A Topological Order of a graph G = (V, E) is an ordering f on the vertices such that: every edge (u, v) ∈ E satisfies f(u) < f(v).
 + f: **the time of DFS finished processing the node. After recursion back to the node.**
 Means u has to appear before v.
@@ -84,7 +84,7 @@ if G has a Cycle
 then => *Full DFS will traverse an edge v to some ancestor of v.*
 Proof: Take cycle (V0,V1,...,Vk,V0)
 let v0 is first visited by DFS, => visit Vk => see (Vk,Vc) \in E
-#### Application of Typological order
+#### Application of Topological order
 Task Scheduling.
 Circuit Dependency Analysis.
 Expression Evaluation.
