@@ -124,3 +124,4 @@ class PriorityQueue:
 				self.A[idx].key = key
 				self.min_heapify_up(idx)
 ```
+## Dijkstra + expend status

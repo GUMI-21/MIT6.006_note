@@ -1,19 +1,59 @@
-def merge_sort(A, a = 0, b = None):
-    if b is None: b = len(A) # init b
-    if 1 < b - a: #end case
-        c = (a + b +a) // 2
-        merge_sort(A, a, c)  # sort left
-        merge_sort(A, c, b)  # sort right
-        l,r = A[a:c], A[c:b]
-        merge(l, r, A, len(l) - 1, len(r) - 1, a, b)
+def merge_sort(arr):
+  """
+  归并排序算法。
 
-# merge input biggest element of i & j into b
-def merge(L, R, A, i, j, a, b):
-    if a < b:
-        if (j <= 0) or (i > 0 and L[i] > R[j]):   # j array end or i > j
-            A[b - 1] = L[i]
-            i = i -1
-        else:
-            A[b - 1] = R[i]
-            j = j - 1
-        merge(L, R, A, i, j, a, b-1)
+  Args:
+    arr: 待排序的数组。
+
+  Returns:
+    排序后的数组。
+  """
+  if len(arr) <= 1:
+    return arr  # 基本情况：长度为 0 或 1 的数组已经排序
+
+  # 1. 分解 (Subproblems)
+  mid = len(arr) // 2
+  left = arr[:mid]
+  right = arr[mid:]
+
+  # 2. 递归排序 (Relation)
+  left = merge_sort(left)
+  right = merge_sort(right)
+
+  # 3. 合并 (Topological Order - implicit)
+  return merge(left, right)
+
+
+def merge(left, right):
+  """
+  合并两个已排序的数组。
+
+  Args:
+    left: 已排序的左半部分数组。
+    right: 已排序的右半部分数组。
+
+  Returns:
+    合并后的已排序数组。
+  """
+  merged = []
+  i = 0  # 左半部分的索引
+  j = 0  # 右半部分的索引
+
+  while i < len(left) and j < len(right):
+    if left[i] <= right[j]:
+      merged.append(left[i])
+      i += 1
+    else:
+      merged.append(right[j])
+      j += 1
+
+  # 将剩余的元素添加到 merged 数组中
+  merged += left[i:]
+  merged += right[j:]
+
+  return merged
+
+# 示例用法:
+my_array = [12, 11, 13, 5, 6, 7]
+sorted_array = merge_sort(my_array)
+print("排序后的数组:", sorted_array)  # 输出: 排序后的数组: [5, 6, 7, 11, 12, 13]
