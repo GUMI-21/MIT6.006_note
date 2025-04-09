@@ -4,4 +4,4 @@ Introduction To Algorithms by
 - [Prof. Erik Demaine](https://ocw.mit.edu/search/?q=Prof.+Erik+Demaine)
 - [Dr. Jason Ku](https://ocw.mit.edu/search/?q=Dr.+Jason+Ku)
 - [Prof. Justin Solomon](https://ocw.mit.edu/search/?q=Prof.+Justin+Solomon)
-TIME: 2025.3.13-
+TIME: 2025.3.13-4.9
